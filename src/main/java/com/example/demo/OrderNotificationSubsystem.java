@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloWebApplication {
+public class OrderNotificationSubsystem {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloWebApplication.class, args);
+		SpringApplication.run(OrderNotificationSubsystem.class, args);
 	}
 
 }
