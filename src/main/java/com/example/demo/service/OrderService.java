@@ -1,4 +1,5 @@
 package com.example.demo.service;
+import com.example.demo.model.SimpleRequestOrder;
 import com.example.demo.model.order.*;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.notification.*;
@@ -24,24 +25,49 @@ public class OrderService {
         return products.getAll();
     }
     public boolean placeSimpleOrder(String customerId, String location, List<String> prodsId) {
+        SimpleOrder temp = createSimpleOrder(customerId, location, prodsId);
+        if(temp == null) return false;
+        temp.getCustomer().setAmount(temp.getCustomer().getAmount() - temp.cost());
+        orders.add(temp);
+        return true;
+    }
+    public boolean placeCompoundOrder(List<SimpleRequestOrder> list) {
+        CompoundOrder order = new CompoundOrder();
+        for (SimpleRequestOrder order_req:
+             list) {
+            SimpleOrder temp = createSimpleOrder(order_req.customerId, order_req.location, order_req.productsId);
+            if(temp == null) {
+                System.out.println("order cannot be created");
+                return false;
+            }
+            if(!order.add(temp)) {
+                System.out.println("order cannot be added");
+                return false;
+            }
+            temp.getCustomer().setAmount(temp.getCustomer().getAmount() - temp.cost());
+        }
+        return orders.add(order);
+    }
+    public Customer getCustomer(String key) {
+        return (Customer) customers.get(key);
+    }
+    private SimpleOrder createSimpleOrder(String customerId, String location, List<String> prodsId) {
         ArrayList<Product> prods = new ArrayList<>();
         for (String id :
                 prodsId) {
             Product p = (Product) products.get(id);
             if(p == null) {
                 System.out.println("No Such products");
-                return false;
+                return null;
             }
             prods.add(p);
         }
         Customer cus = (Customer) (customers.get(customerId));
         if(cus == null) {
             System.out.println("No such customer " + customerId);
-            return false;
+            return null;
         }
-        Order order = new SimpleOrder(location, cus, prods);
-        orders.add(order);
-        return true;
+        return new SimpleOrder(location, cus, prods);
     }
     public String getAllOrders() {
         String s = "";
@@ -49,8 +75,9 @@ public class OrderService {
         for (Order o :
                 orders.getAll()) {
             i++;
+            s += "---------------\n";
             s += "Order " + i + "\n";
-            s += o.details();
+            s += o.details() + "\n---------------";
         }
         return s;
     }

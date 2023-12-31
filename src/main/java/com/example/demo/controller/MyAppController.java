@@ -32,8 +32,16 @@ public class MyAppController {
     public boolean placeSimpleOrder(@RequestBody SimpleRequestOrder request) {
         return service.placeSimpleOrder(request.customerId, request.location, request.productsId);
     }
+    @PostMapping("/place/compound")
+    public boolean placeCompoundOrder(@RequestBody List<SimpleRequestOrder> request) {
+        return service.placeCompoundOrder(request);
+    }
     @GetMapping("/get")
     public String getAllOrders() {
         return service.getAllOrders();
+    }
+    @GetMapping("/get/customer/{id}")
+    public Customer getCustomer(@PathVariable("id") String id) {
+        return service.getCustomer(id);
     }
 }
