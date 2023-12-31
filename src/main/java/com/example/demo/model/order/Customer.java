@@ -3,6 +3,7 @@ package com.example.demo.model.order;
 public class Customer extends Entity {
     String phoneNum;
     String email;
+
     public Customer (String key, String name, double balance, String email, String phoneNum){
         super(name, key, balance);
         this.email=email;
