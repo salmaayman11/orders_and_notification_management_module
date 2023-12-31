@@ -11,19 +11,19 @@ public class MsgQueue {
     public Queue<Notification> getAll() {
         return msgs;
     }
-//    public void pop() {
-//        if (!msgs.isEmpty()) {
-//            ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-//            executorService.scheduleAtFixedRate(() -> {
-//                try {
-//                     msgs.poll();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }, 0, 30, TimeUnit.SECONDS);
-//            executorService.shutdown();
-//        }
-//        }
+    public void pop() {
+        if (!msgs.isEmpty()) {
+            ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+            executorService.scheduleAtFixedRate(() -> {
+                try {
+                     msgs.poll();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }, 0, 30, TimeUnit.SECONDS);
+            executorService.shutdown();
+        }
+        }
 
     }
 
