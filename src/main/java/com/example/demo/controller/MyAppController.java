@@ -1,20 +1,17 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.model.SimpleRequestOrder;
 import com.example.demo.model.order.*;
 import com.example.demo.model.order.Product;
 import com.example.demo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/order")
@@ -32,16 +29,11 @@ public class MyAppController {
 	}
 
     @PostMapping("/place/simple")
-    public boolean placeSimpleOrder() {
-        return service.placeSimpleOrder("ALex", "125");
+    public boolean placeSimpleOrder(@RequestBody SimpleRequestOrder request) {
+        return service.placeSimpleOrder(request.customerId, request.location, request.productsId);
     }
     @GetMapping("/get")
-    public ArrayList<String> getAllOrders() {
-        ArrayList<String> s = new ArrayList<>();
-        for (Order o :
-                service.getAllOrders()) {
-            s.add(o.details());
-        }
-        return s;
+    public String getAllOrders() {
+        return service.getAllOrders();
     }
 }
