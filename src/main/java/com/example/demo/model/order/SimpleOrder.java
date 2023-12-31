@@ -7,15 +7,16 @@ public class SimpleOrder implements Order {
     private ArrayList<Product> products = new ArrayList<Product>();
     private String location;
     private Customer customer;
+    private String key = "";
+    public Customer getCustomer() {
+        return customer;
+    }
 
     public SimpleOrder(String location, Customer customer, ArrayList<Product> prods) {
         this.location = location;
         this.customer = customer;
         products = prods;
-    }
-    public SimpleOrder(String location, Customer customer) {
-        this.location = location;
-        this.customer = customer;
+        getKey();
     }
 
     @Override
@@ -26,6 +27,10 @@ public class SimpleOrder implements Order {
             cost += p.getAmount();
         }
         return cost;
+    }
+    @Override
+    public void setKey(String s) {
+        key = s;
     }
     @Override
     public double fees() {
@@ -41,17 +46,16 @@ public class SimpleOrder implements Order {
         for (int i = 0; i < products.size(); i++) {
             s += "Product " + (i+1) + ":\n" + products.get(i).print() + '\n';
         }
-        s += "For customer: " + customer.getName() + '\n' + "Location: " + location + '\n' + "Cost: " +  cost();
+        s += "For customer: " + customer.getName() + "\n" + "Location: " + location + '\n' + "Cost: " +  cost() + "\n";
         return s;
     }
     @Override
     public String getKey() {
-        String s = "";
         for (Product p :
                 products) {
-            s += p.getKey();
+            key += p.getKey();
         }
-        return s;
+        return key;
     }
     public Customer getCustomer(){
         return customer;

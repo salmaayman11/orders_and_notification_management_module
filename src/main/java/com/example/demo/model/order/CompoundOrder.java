@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class CompoundOrder implements Order {
     private ArrayList<Order> orders = new ArrayList<Order>();
+    private String key = "";
 
     public boolean add(Order order) {
         return check(order.location()) && orders.add(order);
@@ -14,6 +15,9 @@ public class CompoundOrder implements Order {
     }
     private boolean check(String location) {
         return orders.isEmpty() || Objects.equals(orders.get(0).location(), location);
+    }
+    public void setKey(String s) {
+        key = s;
     }
     public double cost() {
         double cost = 0;
@@ -45,12 +49,10 @@ public class CompoundOrder implements Order {
     }
     @Override
     public String getKey() {
-        String s = "";
         for (Order o :
                 orders) {
-            s += o.getKey();
-        }
-        return s;
+            key += o.getKey();
+        }return key;
     }
     public ArrayList<Order>getOrders(){
         return orders;
