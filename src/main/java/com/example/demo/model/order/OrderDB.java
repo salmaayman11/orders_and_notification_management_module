@@ -29,7 +29,8 @@ public class OrderDB {
     public Order get(String key){
         return list.getOrDefault(key, null);
     }
-    public List<Order> getAll(){
+
+    public List<Order> getAll() {
         return new ArrayList<Order>(list.values());
     }
 }

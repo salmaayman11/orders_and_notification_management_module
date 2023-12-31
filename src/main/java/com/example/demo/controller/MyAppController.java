@@ -43,7 +43,7 @@ public class MyAppController {
     public boolean placeCompoundOrder(@RequestBody List<SimpleRequestOrder> request) {
         return service.placeCompoundOrder(request);
     }
-    @GetMapping("/get")
+    @GetMapping("/getall")
     public String getAllOrders() {
         return service.getAllOrders();
     }
@@ -52,14 +52,14 @@ public class MyAppController {
         return service.getCustomer(id);
     }
 
-    @DeleteMapping()
-    public void deleteM() throws InterruptedException {
-        service.deleteMessage();
-    }
-    @PostMapping("/add")
-    public Notification shippingNoti(@RequestBody Customer user, @RequestBody Order order ) throws InterruptedException {
-        return service.shippmentNotification(user, order);
-    }
+//    @DeleteMapping()
+//    public void deleteM() throws InterruptedException {
+//        service.deleteMessage();
+//    }
+//    @PostMapping("/add/noti")
+//    public Notification shippingNoti(@RequestBody Customer user, @RequestBody Order order ) throws InterruptedException {
+//        return service.shippmentNotification(user, order);
+//    }
     @PostMapping("/shipSimpleOrder/{orderKey}")
     public boolean shipSimpleOrderAPI(@PathVariable("orderKey") String orderKey){
         return service.shipSimpleOrder(orderKey);

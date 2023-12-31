@@ -57,7 +57,5 @@ public class SimpleOrder implements Order {
         }
         return key;
     }
-    public Customer getCustomer(){
-        return customer;
-    }
+
 }
