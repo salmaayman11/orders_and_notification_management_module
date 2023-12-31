@@ -63,14 +63,26 @@ public class OrderService {
         Random random = new Random();
         int randomChannel = random.nextInt(2);
         if (randomChannel == 0 ){ //SMS notification
+
             SMSNotification smsNotification = new SMSNotification(order, customer);
             noti = smsNotification.createPlacemenetNoti();
-            msgQueue.add(noti);
+            if(msgQueue.getAll().isEmpty()){
+                msgQueue.add(noti);
+                deleteMessage();
+            }else{
+                msgQueue.add(noti);
+            }
         }
         else {
             EmailNotification emailNotification = new EmailNotification(order, customer);
             Notification noti = emailNotification.createPlacemenetNoti();
-            msgQueue.add(noti);
+            if(msgQueue.getAll().isEmpty()){
+                msgQueue.add(noti);
+                deleteMessage();
+            }else{
+                msgQueue.add(noti);
+            }
+
         }
        return noti;
     }
