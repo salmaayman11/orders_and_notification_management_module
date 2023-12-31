@@ -7,6 +7,11 @@ public class SimpleOrder implements Order {
     private String location;
     private Customer customer;
 
+    public SimpleOrder(String location, Customer customer) {
+        this.location = location;
+        this.customer = customer;
+    }
+
     @Override
     public double cost() {
         double cost = 0;
