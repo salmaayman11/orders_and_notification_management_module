@@ -26,8 +26,17 @@ public class MyAppController {
     }
     @PostMapping("/add")
     @GetMapping("/get")
-    public Notification shippingNoti(@RequestBody Customer user, @RequestBody Order order ) {
+    public Notification shippingNoti(@RequestBody Customer user, @RequestBody Order order ) throws InterruptedException {
         return service.shippmentNotification(user, order);
+    }
+    @PostMapping("/shipSimpleOrder/{orderKey}")
+    public boolean shipSimpleOrderAPI(@PathVariable("orderKey") String orderKey){
+        return service.shipSimpleOrder(orderKey);
+    }
+
+    @PostMapping("/shipCompoundOrder/{orderKey}")
+    boolean shipCompoundOrderAPI(@PathVariable("orderKey") String orderKey){
+        return service.shipCompoundOrder(orderKey);
     }
 
 }

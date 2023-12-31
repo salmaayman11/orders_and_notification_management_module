@@ -39,16 +39,26 @@ public class OrderService {
         Thread.sleep(30000);
     }
 
-    public Notification shippmentNotification(Customer user, Order order) {
+    public Notification shippmentNotification(Customer user, Order order) throws InterruptedException {
         Random rand = new Random();
         int num = rand.nextInt(2);
         if (num == 0) {
             SMSNotification sms = new SMSNotification(order, user);
             noti = sms.createShippmentNoti();
+           if (queue.getAll().isEmpty()){
+               queue.add(noti);
+               deleteMessage();
+           }
+           else
             queue.add(noti);
         } else {
             EmailNotification email = new EmailNotification(order, user);
             noti = email.createShippmentNoti();
+            if (queue.getAll().isEmpty()){
+                queue.add(noti);
+                deleteMessage();
+            }
+            else
             queue.add(noti);
         }
         return noti;

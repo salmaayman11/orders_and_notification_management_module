@@ -8,6 +8,6 @@ public abstract class NotificationFactory {
         this.order = order;
         this.customer = customer;
     }
-    public abstract Notification createPlacemenetNoti() ;
+    public abstract Notification createPlacemenetNoti(String cont) ;
     public abstract Notification createShippmentNoti();
 }
