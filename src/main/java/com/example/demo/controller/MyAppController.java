@@ -1,6 +1,4 @@
 package com.example.demo.controller;
-
-
 import com.example.demo.model.SimpleRequestOrder;
 import com.example.demo.model.order.*;
 import com.example.demo.model.order.Product;
@@ -13,10 +11,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.example.demo.model.notification.Notification;
+import com.example.demo.model.notification.ShippmentTemp;
+import com.example.demo.model.order.Customer;
+import com.example.demo.model.order.Entity;
+import com.example.demo.model.order.Order;
+import com.example.demo.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/order")
 public class MyAppController {
-
     /*The personService field is annotated with @Autowired,
     indicating that Spring should automatically inject an instance of PersonServiceImpl when creating an instance of MyAppController.
     This service is presumably responsible for business logic related to the Person entity.*/
@@ -44,4 +51,23 @@ public class MyAppController {
     public Customer getCustomer(@PathVariable("id") String id) {
         return service.getCustomer(id);
     }
+
+    @DeleteMapping()
+    public void deleteM() throws InterruptedException {
+        service.deleteMessage();
+    }
+    @PostMapping("/add")
+    public Notification shippingNoti(@RequestBody Customer user, @RequestBody Order order ) throws InterruptedException {
+        return service.shippmentNotification(user, order);
+    }
+    @PostMapping("/shipSimpleOrder/{orderKey}")
+    public boolean shipSimpleOrderAPI(@PathVariable("orderKey") String orderKey){
+        return service.shipSimpleOrder(orderKey);
+    }
+
+    @PostMapping("/shipCompoundOrder/{orderKey}")
+    boolean shipCompoundOrderAPI(@PathVariable("orderKey") String orderKey){
+        return service.shipCompoundOrder(orderKey);
+    }
+
 }

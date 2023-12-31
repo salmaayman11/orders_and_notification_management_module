@@ -54,4 +54,7 @@ public class CompoundOrder implements Order {
             key += o.getKey();
         }return key;
     }
+    public ArrayList<Order>getOrders(){
+        return orders;
+    }
 }

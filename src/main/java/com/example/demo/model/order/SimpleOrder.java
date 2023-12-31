@@ -3,6 +3,7 @@ package com.example.demo.model.order;
 import java.util.ArrayList;
 
 public class SimpleOrder implements Order {
+
     private ArrayList<Product> products = new ArrayList<Product>();
     private String location;
     private Customer customer;
@@ -55,5 +56,8 @@ public class SimpleOrder implements Order {
             key += p.getKey();
         }
         return key;
+    }
+    public Customer getCustomer(){
+        return customer;
     }
 }
