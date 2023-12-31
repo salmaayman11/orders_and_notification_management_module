@@ -52,4 +52,7 @@ public class CompoundOrder implements Order {
         }
         return s;
     }
+    public ArrayList<Order>getOrders(){
+        return orders;
+    }
 }
