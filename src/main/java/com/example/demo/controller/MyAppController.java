@@ -21,13 +21,13 @@ public class MyAppController {
         return service.allProducts();
     }
     @DeleteMapping()
-    public Boolean deleteM() {
-        return service.deleteMessage();
+    public void deleteM() throws InterruptedException {
+        service.deleteMessage();
     }
-
     @PostMapping("/add")
     @GetMapping("/get")
-    public Notification shippingNoti(@RequestBody Customer user, @RequestBody Order order,String lan ) {
-        return service.shippmentNotification(user, order,lan);
+    public Notification shippingNoti(@RequestBody Customer user, @RequestBody Order order ) {
+        return service.shippmentNotification(user, order);
     }
+
 }
