@@ -12,10 +12,18 @@ public class ShippmentTemp implements OrderTemp {
         else
             message+="this is an "+channel;
         if (order instanceof SimpleOrder) {
-            for()
+            message+=" your booking of the"+ ((SimpleOrder) order).details +" with ID "+Order.getKey()+" is shipped successfully "+"thanks for using our store";
+        }
+        else if (order instanceof CompoundOrder) {
+            for (Order sub : sub) {
+                if (sub instanceof SimpleOrder) {
+                    message += ((SimpleOrder) order).details + " ";
+                }
+            }
+            message+="with ID "+Order.getKey()+" is shipped successfully "+"thanks for using our store";
         }
 
-        return " ";
+        return message;
 
 
 
