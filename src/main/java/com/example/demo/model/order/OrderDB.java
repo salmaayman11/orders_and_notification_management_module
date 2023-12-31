@@ -4,18 +4,10 @@ import java.util.*;
 
 public class OrderDB {
     private Map<String, Order> list = new HashMap<>();
-    private int count;
 
     public boolean add(Order order){
-        order.setKey(order.getKey() + count);
-        if(list.containsKey(order.getKey())){
-            return false;
-        }
-        else {
-            list.put(order.getKey(), order);
-            return true;
-        }
-
+        list.put(order.getKey(), order);
+        return true;
     }
     public boolean delete(String key){
         if(list.containsKey(key)){

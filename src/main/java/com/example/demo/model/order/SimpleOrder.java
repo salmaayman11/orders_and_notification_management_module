@@ -1,6 +1,7 @@
 package com.example.demo.model.order;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class SimpleOrder implements Order {
 
@@ -16,7 +17,7 @@ public class SimpleOrder implements Order {
         this.location = location;
         this.customer = customer;
         products = prods;
-        getKey();
+        key = UUID.randomUUID().toString();
     }
 
     @Override
@@ -27,10 +28,6 @@ public class SimpleOrder implements Order {
             cost += p.getAmount();
         }
         return cost;
-    }
-    @Override
-    public void setKey(String s) {
-        key = s;
     }
     @Override
     public double fees() {
@@ -51,10 +48,6 @@ public class SimpleOrder implements Order {
     }
     @Override
     public String getKey() {
-        for (Product p :
-                products) {
-            key += p.getKey();
-        }
         return key;
     }
 

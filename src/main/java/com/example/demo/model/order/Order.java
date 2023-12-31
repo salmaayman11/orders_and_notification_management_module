@@ -6,5 +6,4 @@ public interface Order {
     public double fees();
     public String location();
     public String getKey();
-    public void setKey(String s);
 }
