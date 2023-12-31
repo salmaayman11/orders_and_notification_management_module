@@ -8,6 +8,11 @@ public class Customer extends Entity {
         this.email=email;
         this.phoneNum=phoneNum;
     }
+
+    public Customer(Entity entity) {
+        super(entity);
+    }
+
     public String getPhoneNum(){
         return phoneNum;
     }

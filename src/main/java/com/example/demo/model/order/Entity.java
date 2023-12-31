@@ -9,6 +9,13 @@ public abstract class Entity {
         this.amountOfMoney=amountOfMoney;
         this.name =name;
     }
+
+    public Entity(Entity entity) {
+        this.amountOfMoney = entity.amountOfMoney;
+        this.key = entity.key;
+        this.name = entity.name;
+    }
+
     public String getName() {
         return name;
     }

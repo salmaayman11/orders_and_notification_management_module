@@ -17,8 +17,8 @@ public class Product extends Entity{
     }
     public String print(){
         String productInfo = "Product Name: " + getName() + "\n" +
-                "Product Key: " + getKey() + "\n" +
-                "Amount: " + getAmount() + "\n" +
+                "Product Serial Number: " + getKey() + "\n" +
+                "Price: " + getAmount() + "\n" +
                 "Vendor: " + vendor + "\n" +
                 "Category: " + category + "\n";
         return productInfo;

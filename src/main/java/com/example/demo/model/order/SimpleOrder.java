@@ -7,6 +7,11 @@ public class SimpleOrder implements Order {
     private String location;
     private Customer customer;
 
+    public SimpleOrder(String location, Customer customer, ArrayList<Product> prods) {
+        this.location = location;
+        this.customer = customer;
+        products = prods;
+    }
     public SimpleOrder(String location, Customer customer) {
         this.location = location;
         this.customer = customer;

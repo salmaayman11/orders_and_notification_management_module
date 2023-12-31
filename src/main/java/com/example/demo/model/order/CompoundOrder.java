@@ -13,7 +13,7 @@ public class CompoundOrder implements Order {
         return orders.remove(order);
     }
     private boolean check(String location) {
-        return orders.isEmpty() || Objects.equals(orders.getFirst().location(), location);
+        return orders.isEmpty() || Objects.equals(orders.get(0).location(), location);
     }
     public double cost() {
         double cost = 0;
@@ -41,7 +41,7 @@ public class CompoundOrder implements Order {
     }
     @Override
     public String location() {
-        return orders.getFirst().location();
+        return orders.get(0).location();
     }
     @Override
     public String getKey() {

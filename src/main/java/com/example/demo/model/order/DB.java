@@ -19,7 +19,6 @@ public class DB {
             list.put(entity.getKey(), entity);
             return true;
         }
-
     }
     public boolean delete(String key){
         if(list.containsKey(key)){
