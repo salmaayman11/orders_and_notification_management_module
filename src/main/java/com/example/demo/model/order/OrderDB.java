@@ -1,5 +1,6 @@
 package com.example.demo.model.order;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,5 +28,8 @@ public class OrderDB {
     }
     public Order get(String key){
         return list.getOrDefault(key, null);
+    }
+    public ArrayList<Order> getAll(){
+        return new ArrayList<>(list.values());
     }
 }
