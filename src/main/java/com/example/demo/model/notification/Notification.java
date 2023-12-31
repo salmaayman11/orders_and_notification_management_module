@@ -1,4 +1,5 @@
 package com.example.demo.model.notification;
+import com.example.demo.model.order.*;
 
 public class Notification {
     private String content ;

@@ -1,8 +1,9 @@
 package com.example.demo.model.notification;
+import com.example.demo.model.order.*;
 
 public abstract class NotificationFactory {
-    private Order order;
-    private Customer customer;
+    Order order;
+    Customer customer;
     public NotificationFactory(Order order, Customer customer) {
         this.order = order;
         this.customer = customer;

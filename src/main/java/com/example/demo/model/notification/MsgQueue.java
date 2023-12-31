@@ -5,28 +5,25 @@ import java.util.concurrent.*;
 public class MsgQueue {
     private Queue<Notification> msgs = new LinkedList<>();
 
-    public void add(Notofication noti) {
+    public void add(Notification noti) {
         msgs.add(noti);
     }
     public Queue<Notification> getAll() {
-        for (Queue<Notification> notification : msgs) {
-            return notification;
-        }
-        return null;
+        return msgs;
     }
-    public void pop() {
-        if (!msgs.isEmpty()) {
-            ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-            executorService.scheduleAtFixedRate(() -> {
-                try {
-                     msgs.poll();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }, 0, 30, TimeUnit.SECONDS);
-            executorService.shutdown();
-        }
-        }
+//    public void pop() {
+//        if (!msgs.isEmpty()) {
+//            ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+//            executorService.scheduleAtFixedRate(() -> {
+//                try {
+//                     msgs.poll();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }, 0, 30, TimeUnit.SECONDS);
+//            executorService.shutdown();
+//        }
+//        }
 
     }
 

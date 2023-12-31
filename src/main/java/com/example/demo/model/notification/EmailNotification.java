@@ -1,4 +1,5 @@
 package com.example.demo.model.notification;
+import com.example.demo.model.order.*;
 
 public class EmailNotification extends NotificationFactory{
 
@@ -9,14 +10,12 @@ public class EmailNotification extends NotificationFactory{
 
     public Notification createPlacemenetNoti(){
         Notification n =new Notification(" ","English",this.customer);
-        PlacementTemp temp = new PlacementTemp();
-        n.content=PlacementTemp.generate(this.customer,this.order,"Email");
+        n.setContent(new PlacementTemp().generate(this.customer, this.order, "Email"));
         return n;
     }
     public Notification createShippmentNoti(){
         Notification n =new Notification(" ","English",this.customer);
-        ShippmentTemp temp = new ShippmentTemp();
-        n.content=ShippmentTemp.generate(this.customer,this.order,"Email");
+        n.setContent(new ShippmentTemp().generate(this.customer, this.order, "Email"));
         return n;
     }
 }
