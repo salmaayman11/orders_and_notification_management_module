@@ -2,6 +2,9 @@ package com.example.demo.service;
 import com.example.demo.model.order.*;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.notification.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Map;
@@ -13,6 +16,7 @@ public class OrderService {
     DB products = new DB();
     DB customers = new DB();
     MsgQueue msgQueue = new MsgQueue();
+    Notification noti;
     OrderService() {
         products.add(new Product("Cheese", "126", 8.0, "Domtey", "Milks"));
         products.add(new Product("Juice", "127", 2.0, "Johaina", "Beverages"));
@@ -55,19 +59,22 @@ public class OrderService {
         return true;
     }
 
-    public void orderPlacementNotification(Customer customer, Order order){
+    public Notification orderPlacementNotification(Customer customer, Order order){
         Random random = new Random();
         int randomChannel = random.nextInt(2);
         if (randomChannel == 0 ){ //SMS notification
             SMSNotification smsNotification = new SMSNotification(order, customer);
-            Notification smsNot = smsNotification.createPlacemenetNoti();
-            msgQueue.add(smsNot);
+            noti = smsNotification.createPlacemenetNoti();
+            msgQueue.add(noti);
         }
         else {
             EmailNotification emailNotification = new EmailNotification(order, customer);
-            Notification smsNoti = emailNotification.createPlacemenetNoti();
-            msgQueue.add(smsNoti);
+            Notification noti = emailNotification.createPlacemenetNoti();
+            msgQueue.add(noti);
         }
+       return noti;
     }
+
+
 
 }
